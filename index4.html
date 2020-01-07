@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Data and APIs Project 4</title>
+</head>
+<body>
+
+    <h1 style="text-align: center;">Fetch Rainbows</h1>
+
+    <script>
+        console.log('I am about to fetch an image');
+        const filenames = [
+            'Black-lady-new.png',
+            'Confident-black-man.png',
+            'hooked.png'
+        ]
+
+        catchRainbows(filenames)
+        .then(response => {
+            console.log('Yay!');
+        })
+        .catch(error => {
+            console.log('error!');
+            console.error(error);
+            
+        })
+
+
+        async function catchRainbows(filenames) {
+
+            for (let filename of filenames) {
+                const response = await fetch(filename);
+                const blob = await response.blob();
+
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(blob);
+                document.body.append(img);
+                img.width = '300';
+             };
+        };
+
+    </script>
+    
+</body>
+</html>
